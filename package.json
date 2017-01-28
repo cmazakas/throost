@@ -1,0 +1,18 @@
+{
+  "name": "throost",
+  "version": "1.0.0",
+  "description": "Iterator adapters",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --recursive test"
+  },
+  "keywords": [
+    "iterator"
+  ],
+  "author": "LeonineKing1199",
+  "license": "ISC",
+  "devDependencies": {
+    "jsdoc": "^3.4.3",
+    "mocha": "^3.2.0"
+  }
+}
