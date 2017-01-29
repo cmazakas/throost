@@ -1,1 +1,1 @@
-node node_modules\jsdoc\jsdoc.js -d ./docs/ .\src\
+node node_modules\jsdoc\jsdoc.js -d ./docs/ -r -R ./README.md ./src/

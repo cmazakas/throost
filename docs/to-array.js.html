@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: make-transform-iterator.js</title>
+    <title>JSDoc: Source: to-array.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: make-transform-iterator.js</h1>
+    <h1 class="page-title">Source: to-array.js</h1>
 
     
 
@@ -27,27 +27,18 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>'use strict';
-
-const TransfromIterator = function(iterable, f) {
-  this.it = iterable[Symbol.iterator]();
-
-  this.next = () => {
-    const { value, done } = this.it.next();
-    return { value: f(value), done };
-  };
-};
-
 /**
- * Creates an iterator that enables lazy transformation of any
- * iterator-returning object
+ * Helper function that takes an iterator and iterates
+ * its length, gathering the result in an array
  *
- * @param {Iterable} iterable Any object that supports the iteratable protocol
- * @param {Function} f A callable that is invoked with the values of the iterable
- * @return {TransfromIterator} Iterator that only transforms values upon traversal
+ * Should not be used on indefinite iterators
+ *
+ * @param {Iterator} Iterator which is mutatively iterated to its end
+ * @return {Array} An array containing the `value`s of each iteration
  */
-const makeTransformIterator = (iterable, f) => new TransfromIterator(iterable, f);
+const toArray = (it) => Array.from({ [Symbol.iterator]() { return it; } });
 
-module.exports = makeTransformIterator;</code></pre>
+module.exports = toArray;</code></pre>
         </article>
     </section>
 

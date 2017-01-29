@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: make-transform-iterator.js</title>
+    <title>JSDoc: Source: make-zip-iterator.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: make-transform-iterator.js</h1>
+    <h1 class="page-title">Source: make-zip-iterator.js</h1>
 
     
 
@@ -28,26 +28,34 @@
         <article>
             <pre class="prettyprint source linenums"><code>'use strict';
 
-const TransfromIterator = function(iterable, f) {
-  this.it = iterable[Symbol.iterator]();
+/**
+ * Iterate over a variadic number of iterators in a single
+ * pass. Useful for creating a structure of arrays vs
+ * an array of structures
+ *
+ * Each dereference of the iterators yields an array of
+ * the values, where the order of the values matches the
+ * order of the supplied iterators as they were passed in
+ *
+ * @param {Iterators} ...args Iterators to simultaneously traverse
+ * @return {ZipIterator} Iterator over several sequences
+ */
+const ZipIterator = function(...args) {
+  this.its = args.map((arg) => arg[Symbol.iterator]());
 
   this.next = () => {
-    const { value, done } = this.it.next();
-    return { value: f(value), done };
+    const derefs = this.its.map((it) => it.next());
+
+    const done  = derefs[0].done;
+    const value = derefs.map((deref) => deref.value);
+
+    return { value, done };
   };
 };
 
-/**
- * Creates an iterator that enables lazy transformation of any
- * iterator-returning object
- *
- * @param {Iterable} iterable Any object that supports the iteratable protocol
- * @param {Function} f A callable that is invoked with the values of the iterable
- * @return {TransfromIterator} Iterator that only transforms values upon traversal
- */
-const makeTransformIterator = (iterable, f) => new TransfromIterator(iterable, f);
+const makeZipIterator = (...args) => new ZipIterator(...args);
 
-module.exports = makeTransformIterator;</code></pre>
+module.exports = makeZipIterator;</code></pre>
         </article>
     </section>
 
