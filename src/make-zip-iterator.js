@@ -1,17 +1,5 @@
 'use strict';
 
-/**
- * Iterate over a variadic number of iterators in a single
- * pass. Useful for creating a structure of arrays vs
- * an array of structures
- *
- * Each dereference of the iterators yields an array of
- * the values, where the order of the values matches the
- * order of the supplied iterators as they were passed in
- *
- * @param {Iterators} ...args Iterators to simultaneously traverse
- * @return {ZipIterator} Iterator over several sequences
- */
 const ZipIterator = function(...args) {
   this.its = args.map((arg) => arg[Symbol.iterator]());
 
@@ -25,6 +13,18 @@ const ZipIterator = function(...args) {
   };
 };
 
+/**
+ * Iterate over a variadic number of iterators in a single
+ * pass. Useful for creating a structure of arrays vs
+ * an array of structures
+ *
+ * Each dereference of the iterators yields an array of
+ * the values, where the order of the values matches the
+ * order of the supplied iterators as they were passed in
+ *
+ * @param {Iterators} ...args Iterators to simultaneously traverse
+ * @return {ZipIterator} Iterator over several sequences
+ */
 const makeZipIterator = (...args) => new ZipIterator(...args);
 
 module.exports = makeZipIterator;
