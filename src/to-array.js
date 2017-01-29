@@ -1,7 +1,9 @@
 'use strict';
 /**
  * Helper function that takes an iterator and iterates
- * its length, gathering the result in an array
+ * its length, gathering the result in an array 
+ *
+ * <br/> <br/>
  *
  * Should not be used on indefinite iterators
  *
