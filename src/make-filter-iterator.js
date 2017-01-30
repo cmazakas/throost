@@ -1,10 +1,9 @@
 'use strict';
 
 const FilterIterator = function(iterable, pred) {
-  this.it = iterable[Symbol.iterator]();
+  const it = iterable[Symbol.iterator]();
 
   this.next = () => {
-    const it = this.it;
     let { value, done } = it.next();
 
     while (!done && !pred(value)) {

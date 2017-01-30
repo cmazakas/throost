@@ -1,6 +1,6 @@
 'use strict';
 
-const assert                = require('assert');
+const assert = require('assert');
 const { makeTransformIterator, toArray } = require('..');
 
 const x = Object.freeze([1, 2, 4, 8]);

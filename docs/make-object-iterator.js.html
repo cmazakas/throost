@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: make-transform-iterator.js</title>
+    <title>JSDoc: Source: make-object-iterator.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: make-transform-iterator.js</h1>
+    <h1 class="page-title">Source: make-object-iterator.js</h1>
 
     
 
@@ -28,26 +28,31 @@
         <article>
             <pre class="prettyprint source linenums"><code>'use strict';
 
-const TransfromIterator = function(iterable, f) {
-  const it = iterable[Symbol.iterator]();
+const ObjectIterator = function(obj) {
+  const keys = Object.keys(obj);
+  const size = keys.length;
+  let   pos  = 0;
 
   this.next = () => {
-    const { value, done } = it.next();
-    return { value: f(value), done };
+    const key = keys[pos];
+    const val = obj[key];
+
+    return {
+      value: [key, val],
+      done:  (size === pos++)
+    };
   };
 };
 
 /**
- * Creates an iterator that enables lazy transformation of any
- * iterator-returning object
+ * Creates an iterator out of a plain ol' JavaScript object
  *
- * @param {Iterable} iterable Any object that supports the iteratable protocol
- * @param {Function} f A callable that is invoked with the values of the iterable
- * @return {TransfromIterator} Iterator that only transforms values upon traversal
+ * @param {Object} obj Object to iterate over
+ * @return {ObjectIterator} Iterator that returns an array containing a key and its value
  */
-const makeTransformIterator = (iterable, f) => new TransfromIterator(iterable, f);
+const makeObjectIterator = (obj) => new ObjectIterator(obj);
 
-module.exports = makeTransformIterator;</code></pre>
+module.exports = makeObjectIterator;</code></pre>
         </article>
     </section>
 

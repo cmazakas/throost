@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: make-transform-iterator.js</title>
+    <title>JSDoc: Source: reduce.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: make-transform-iterator.js</h1>
+    <h1 class="page-title">Source: reduce.js</h1>
 
     
 
@@ -28,26 +28,33 @@
         <article>
             <pre class="prettyprint source linenums"><code>'use strict';
 
-const TransfromIterator = function(iterable, f) {
-  const it = iterable[Symbol.iterator]();
+/**
+ * Reduction function for a given iterator
+ *
+ * &lt;br/> &lt;br/>
+ * Should not be used on indefinite iterators
+ *
+ * @param {Function} f Binary function whose first argument is the accumulated total and second argument is the current dereferenced value
+ * @param {*} init Initial value for the reduction
+ * @param {Iterator} it Iterator to be traversed
+ * @return {*} Returns the accumulated value
+ */
+const reduce = (f, init, it) => {
+  let acc = init;
+  let { value, done } = it.next();
 
-  this.next = () => {
-    const { value, done } = it.next();
-    return { value: f(value), done };
-  };
+  while (!done) {
+    acc = f(acc, value);
+
+    const tmp = it.next();
+    value = tmp.value;
+    done  = tmp.done;
+  }
+
+  return acc;
 };
 
-/**
- * Creates an iterator that enables lazy transformation of any
- * iterator-returning object
- *
- * @param {Iterable} iterable Any object that supports the iteratable protocol
- * @param {Function} f A callable that is invoked with the values of the iterable
- * @return {TransfromIterator} Iterator that only transforms values upon traversal
- */
-const makeTransformIterator = (iterable, f) => new TransfromIterator(iterable, f);
-
-module.exports = makeTransformIterator;</code></pre>
+module.exports = reduce;</code></pre>
         </article>
     </section>
 

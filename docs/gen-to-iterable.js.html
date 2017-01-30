@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: make-transform-iterator.js</title>
+    <title>JSDoc: Source: gen-to-iterable.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: make-transform-iterator.js</h1>
+    <h1 class="page-title">Source: gen-to-iterable.js</h1>
 
     
 
@@ -28,26 +28,26 @@
         <article>
             <pre class="prettyprint source linenums"><code>'use strict';
 
-const TransfromIterator = function(iterable, f) {
-  const it = iterable[Symbol.iterator]();
-
-  this.next = () => {
-    const { value, done } = it.next();
-    return { value: f(value), done };
-  };
-};
-
 /**
- * Creates an iterator that enables lazy transformation of any
- * iterator-returning object
+ * Unfortunately, almost everything in JavaScript has a Symbol.iterator
+ * property. However, generators do not!
  *
- * @param {Iterable} iterable Any object that supports the iteratable protocol
- * @param {Function} f A callable that is invoked with the values of the iterable
- * @return {TransfromIterator} Iterator that only transforms values upon traversal
+ * &lt;br/> &lt;br/>
+ *
+ * This is a helper function that creates an iterable-conforming interface out
+ * of a generator function. The iterable type will forward all supplied arguments
+ * to the generator function
+ * 
+ * @param {GeneratorFunction} genFn
+ * @return {Iterable} An object, o, that supports `o[Symbol.iterator](...args)`
  */
-const makeTransformIterator = (iterable, f) => new TransfromIterator(iterable, f);
+const genToIterable = (genFn) => ({
+  [Symbol.iterator](...args) {
+    return genFn(...args);
+  }
+});
 
-module.exports = makeTransformIterator;</code></pre>
+module.exports = genToIterable;</code></pre>
         </article>
     </section>
 

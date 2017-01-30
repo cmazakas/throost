@@ -1,6 +1,6 @@
 'use strict';
 
-const assert          = require('assert');
+const assert = require('assert');
 const { makeZipIterator, toArray } = require('..');
 
 describe('The zip iterator', () => {
@@ -31,7 +31,7 @@ describe('The zip iterator', () => {
       ]);
   });
 
-  it('should preserver argument ordering', () => {
+  it('should preserve argument ordering', () => {
     const nums  = [  0,   1,   2,   3,   4,   5];
     const chars = ['a', 'b', 'c', 'd', 'e', 'f'];
     const nums2 = new Set([0, 1, 2, 3, 4, 5]);

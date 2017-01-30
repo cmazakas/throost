@@ -1,10 +1,10 @@
 'use strict';
 
 const ZipIterator = function(...args) {
-  this.its = args.map((arg) => arg[Symbol.iterator]());
+  const its = args.map((arg) => arg[Symbol.iterator]());
 
   this.next = () => {
-    const derefs = this.its.map((it) => it.next());
+    const derefs = its.map((it) => it.next());
 
     const done  = derefs[0].done;
     const value = derefs.map((deref) => deref.value);

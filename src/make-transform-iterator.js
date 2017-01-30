@@ -1,10 +1,10 @@
 'use strict';
 
 const TransfromIterator = function(iterable, f) {
-  this.it = iterable[Symbol.iterator]();
+  const it = iterable[Symbol.iterator]();
 
   this.next = () => {
-    const { value, done } = this.it.next();
+    const { value, done } = it.next();
     return { value: f(value), done };
   };
 };

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: make-transform-iterator.js</title>
+    <title>JSDoc: Source: map.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: make-transform-iterator.js</h1>
+    <h1 class="page-title">Source: map.js</h1>
 
     
 
@@ -28,26 +28,33 @@
         <article>
             <pre class="prettyprint source linenums"><code>'use strict';
 
-const TransfromIterator = function(iterable, f) {
-  const it = iterable[Symbol.iterator]();
+/**
+ * Maps a function f over the iterator it
+ *
+ * &lt;br/> &lt;br/>
+ *
+ * Should not be used on indefinite iterators
+ *
+ * @param {Iterator} it
+ * @param {Function} f
+ * @return {Array} Array of values from f(it.next().value)
+ */
+const map = (it, f) => {
+  const vals = [];
 
-  this.next = () => {
-    const { value, done } = it.next();
-    return { value: f(value), done };
-  };
+  let { value, done } = it.next();
+  while (!done) {
+    vals.push(f(value));
+
+    const tmp = it.next();
+    value = tmp.value;
+    done  = tmp.done;
+  }
+
+  return vals;
 };
 
-/**
- * Creates an iterator that enables lazy transformation of any
- * iterator-returning object
- *
- * @param {Iterable} iterable Any object that supports the iteratable protocol
- * @param {Function} f A callable that is invoked with the values of the iterable
- * @return {TransfromIterator} Iterator that only transforms values upon traversal
- */
-const makeTransformIterator = (iterable, f) => new TransfromIterator(iterable, f);
-
-module.exports = makeTransformIterator;</code></pre>
+module.exports = map;</code></pre>
         </article>
     </section>
 
