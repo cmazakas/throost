@@ -2,10 +2,11 @@
 
 const assert = require('assert');
 
-const { reduce, 
+const { reduce,
         makeZipIterator,
         makeTransformIterator,
-        genToIterable } = require('..');
+        makeFilterIterator,
+        begin } = require('..');
 
 const add = (x, y) => x + y;
 
@@ -29,7 +30,7 @@ describe('The reduction function', () => {
     const z = ['c', 'f', 'i'];
 
     const concat = (x, y) => x.concat(y);
-    const xyz    = reduce(concat, [], makeZipIterator(x, y, z));
+    const xyz    = reduce(concat, [], makeZipIterator(...[x, y, z].map(begin)));
 
     assert.deepEqual(xyz.join(''), 'abcdefghi');
   });
@@ -44,12 +45,28 @@ describe('The reduction function', () => {
     const sum = reduce(
       add, 0, 
       makeTransformIterator(
-        genToIterable(range), 
-        x => x * 2));
+        x => x * 2, 
+        range()));
 
     // 0 * 2 + 1 * 2 + 2 * 2 + 3 * 2 + 4 * 2
     // 0 + 2 + 4 + 6 + 8
     // 20
     assert.deepEqual(sum, 20);
+  });
+
+  it('should support a fancy iterator (filter)', () => {
+    const range = function*() {
+      for (let i = 0; i < 10; ++i) {
+        yield i;
+      }
+    };
+
+    const isEven = (x) => x % 2 === 0;
+    const add    = (...args) => args.reduce((total, value) => total + value, 0);
+
+    const sum = reduce(add, 0, makeFilterIterator(isEven, range()));
+
+    // 0 + 2 + 4 + 6 + 8
+    assert.deepEqual(20, sum);
   });
 });

@@ -2,7 +2,7 @@
 
 const assert = require('assert');
 
-const { makeFilterIterator, toArray } = require('..');
+const { makeFilterIterator, toArray, begin } = require('..');
 
 describe('The filter iterator', () => {
   it('should filter based on a unary predicate', () => {
@@ -10,7 +10,11 @@ describe('The filter iterator', () => {
 
     const isEven = (x) => x % 2 === 0;
 
-    const filteredVals = toArray(makeFilterIterator(x, isEven));
+    const filteredVals = 
+      toArray(
+        makeFilterIterator(
+          isEven, begin(x)));
+
     assert.deepEqual(filteredVals, [0, 2, 4, 6, 8]);
   });
 });

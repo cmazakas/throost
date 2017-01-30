@@ -8,7 +8,7 @@ const throost = {
   toArray:               require('./src/to-array'),
   reduce:                require('./src/reduce'),
   map:                   require('./src/map'),
-  genToIterable:         require('./src/gen-to-iterable')
+  begin:                 require('./src/begin')
 };
 
 module.exports = throost;

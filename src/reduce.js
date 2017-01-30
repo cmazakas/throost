@@ -4,6 +4,7 @@
  * Reduction function for a given iterator
  *
  * <br/> <br/>
+ *
  * Should not be used on indefinite iterators
  *
  * @param {Function} f Binary function whose first argument is the accumulated total and second argument is the current dereferenced value

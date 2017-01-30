@@ -1,14 +1,14 @@
 'use strict';
 
 const assert = require('assert');
-const { makeZipIterator, toArray } = require('..');
+const { makeZipIterator, toArray, begin } = require('..');
 
 describe('The zip iterator', () => {
   it('should iterate a variadic list of iterables', () => {
     const evens = [0, 2, 4, 8];
     const odds  = [1, 3, 5, 7];
 
-    const zipIterator = makeZipIterator(evens, odds);
+    const zipIterator = makeZipIterator(...[evens, odds].map(begin));
 
     for (let i = 0; i < evens.length; ++i) {
       assert.deepEqual(zipIterator.next().value, [evens[i], odds[i]]);
@@ -19,7 +19,7 @@ describe('The zip iterator', () => {
     const evens = [0, 2, 4, 8];
     const odds  = new Set([1, 3, 5, 7]);
 
-    const zipIterator = makeZipIterator(evens, odds);
+    const zipIterator = makeZipIterator(...[evens, odds].map(begin));
 
     assert.deepEqual(
       toArray(zipIterator),
@@ -41,7 +41,11 @@ describe('The zip iterator', () => {
       } 
     };
 
-    const zipIterator = makeZipIterator(nums, chars, nums2, nums3());
+    const zipIterator = makeZipIterator(
+      begin(nums), 
+      begin(chars), 
+      begin(nums2), 
+      nums3());
 
     assert.deepEqual(
       toArray(zipIterator),
