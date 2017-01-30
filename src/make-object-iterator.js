@@ -19,6 +19,10 @@ const ObjectIterator = function(obj) {
 /**
  * Creates an iterator out of a plain ol' JavaScript object
  *
+ * <br/> <br/>
+ *
+ * Operates in the same manner as iterating a Map object
+ *
  * @param {Object} obj Object to iterate over
  * @return {ObjectIterator} Iterator that returns an array containing a key and its value
  */

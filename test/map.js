@@ -2,7 +2,7 @@
 
 const assert = require('assert');
 
-const { map } = require('..');
+const { map, begin } = require('..');
 
 describe('The map funtion', () => {
   it('should create an array of the mapped over iterator', () => {
@@ -10,7 +10,7 @@ describe('The map funtion', () => {
     const double = (x) => x * 2;
 
     assert.deepEqual(
-      map(set[Symbol.iterator](), double),
+      map(double, begin(set)),
       [0, 2, 4, 6, 8, 10]
     );
   });

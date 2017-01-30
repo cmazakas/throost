@@ -16,7 +16,7 @@ const ZipIterator = function(...args) {
 /**
  * Iterate over a variadic number of iterators in a single
  * pass. Useful for creating a structure of arrays vs
- * an array of structures 
+ * an array of structures approach
  *
  * <br/> <br/>
  *

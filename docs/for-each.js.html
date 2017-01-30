@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: make-object-iterator.js</title>
+    <title>JSDoc: Source: for-each.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: make-object-iterator.js</h1>
+    <h1 class="page-title">Source: for-each.js</h1>
 
     
 
@@ -28,35 +28,26 @@
         <article>
             <pre class="prettyprint source linenums"><code>'use strict';
 
-const ObjectIterator = function(obj) {
-  const keys = Object.keys(obj);
-  const size = keys.length;
-  let   pos  = 0;
+/**
+ * Invokes a callable over a range pointed at by an
+ * iterator
+ *
+ * @param {Function} f Callable-type
+ * @param {Iterator} it Iterator-type
+ */
+const forEach = (f, it) => {
+  let { value, done } = it.next();
 
-  this.next = () => {
-    const key = keys[pos];
-    const val = obj[key];
+  while (!done) {
+    f(value);
 
-    return {
-      value: [key, val],
-      done:  (size === pos++)
-    };
-  };
+    const tmp = it.next();
+    value     = tmp.value
+    done      = tmp.done;
+  }
 };
 
-/**
- * Creates an iterator out of a plain ol' JavaScript object
- *
- * &lt;br/> &lt;br/>
- *
- * Operates in the same manner as iterating a Map object
- *
- * @param {Object} obj Object to iterate over
- * @return {ObjectIterator} Iterator that returns an array containing a key and its value
- */
-const makeObjectIterator = (obj) => new ObjectIterator(obj);
-
-module.exports = makeObjectIterator;</code></pre>
+module.exports = forEach;</code></pre>
         </article>
     </section>
 

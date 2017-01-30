@@ -7,11 +7,11 @@
  *
  * Should not be used on indefinite iterators
  *
- * @param {Iterator} it
  * @param {Function} f
+ * @param {Iterator} it
  * @return {Array} Array of values from f(it.next().value)
  */
-const map = (it, f) => {
+const map = (f, it) => {
   const vals = [];
 
   let { value, done } = it.next();

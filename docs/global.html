@@ -101,167 +101,14 @@
 
     
 
-    <h4 class="name" id="genToIterable"><span class="type-signature"></span>genToIterable<span class="signature">(genFn)</span><span class="type-signature"> &rarr; {Iterable}</span></h4>
+    <h4 class="name" id="begin"><span class="type-signature"></span>begin<span class="signature">(iterable)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Unfortunately, almost everything in JavaScript has a Symbol.iteratorproperty. However, generators do not!<br/> <br/>This is a helper function that creates an iterable-conforming interface outof a generator function. The iterable type will forward all supplied argumentsto the generator function
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>genFn</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">GeneratorFunction</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="gen-to-iterable.js.html">gen-to-iterable.js</a>, <a href="gen-to-iterable.js.html#line16">line 16</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    An object, o, that supports `o[Symbol.iterator](...args)`
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Iterable</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="makeFilterIterator"><span class="type-signature"></span>makeFilterIterator<span class="signature">(iterable, pred)</span><span class="type-signature"> &rarr; {FilterIterator}</span></h4>
-
-    
-
-
-
-<div class="description">
-    Iterator adapter that yields only values that satisfy theprovided unary predicate
+    Returns an iterator pointing to the beginning of an iterable type
 </div>
 
 
@@ -313,30 +160,7 @@
 
             
 
-            <td class="description last">Any object that supports the iteratable protocol</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>pred</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Unary predicate used for determining valid values of the underlying sequence</td>
+            <td class="description last">Any type that supports the operation, `o[Symbol.iterator]()`</td>
         </tr>
 
     
@@ -377,7 +201,315 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="make-filter-iterator.js.html">make-filter-iterator.js</a>, <a href="make-filter-iterator.js.html#line27">line 27</a>
+        <a href="begin.js.html">begin.js</a>, <a href="begin.js.html#line8">line 8</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="forEach"><span class="type-signature"></span>forEach<span class="signature">(f, it)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Invokes a callable over a range pointed at by aniterator
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>f</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Callable-type</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>it</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Iterator</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Iterator-type</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="for-each.js.html">for-each.js</a>, <a href="for-each.js.html#line10">line 10</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="makeFilterIterator"><span class="type-signature"></span>makeFilterIterator<span class="signature">(pred, it)</span><span class="type-signature"> &rarr; {FilterIterator}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Iterator adapter that yields only values that satisfy theprovided unary predicate
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>pred</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Unary predicate used for determining valid values of the underlying sequence</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>it</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Iterator</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Iterator-type</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="make-filter-iterator.js.html">make-filter-iterator.js</a>, <a href="make-filter-iterator.js.html#line25">line 25</a>
     </li></ul></dd>
     
 
@@ -433,7 +565,7 @@
 
 
 <div class="description">
-    Creates an iterator out of a plain ol' JavaScript object
+    Creates an iterator out of a plain ol' JavaScript object<br/> <br/>Operates in the same manner as iterating a Map object
 </div>
 
 
@@ -526,7 +658,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="make-object-iterator.js.html">make-object-iterator.js</a>, <a href="make-object-iterator.js.html#line25">line 25</a>
+        <a href="make-object-iterator.js.html">make-object-iterator.js</a>, <a href="make-object-iterator.js.html#line29">line 29</a>
     </li></ul></dd>
     
 
@@ -579,14 +711,14 @@
 
     
 
-    <h4 class="name" id="makeTransformIterator"><span class="type-signature"></span>makeTransformIterator<span class="signature">(iterable, f)</span><span class="type-signature"> &rarr; {TransfromIterator}</span></h4>
+    <h4 class="name" id="makeTransformIterator"><span class="type-signature"></span>makeTransformIterator<span class="signature">(f, it)</span><span class="type-signature"> &rarr; {TransfromIterator}</span></h4>
 
     
 
 
 
 <div class="description">
-    Creates an iterator that enables lazy transformation of anyiterator-returning object
+    Creates an iterator that enables lazy transformation of anysequence generated by an iterator
 </div>
 
 
@@ -622,29 +754,6 @@
 
         <tr>
             
-                <td class="name"><code>iterable</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Iterable</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Any object that supports the iteratable protocol</td>
-        </tr>
-
-    
-
-        <tr>
-            
                 <td class="name"><code>f</code></td>
             
 
@@ -661,7 +770,30 @@
 
             
 
-            <td class="description last">A callable that is invoked with the values of the iterable</td>
+            <td class="description last">A callable that is invoked with the values of the iterator</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>it</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Iterable</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Iterator-type</td>
         </tr>
 
     
@@ -702,7 +834,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="make-transform-iterator.js.html">make-transform-iterator.js</a>, <a href="make-transform-iterator.js.html#line20">line 20</a>
+        <a href="make-transform-iterator.js.html">make-transform-iterator.js</a>, <a href="make-transform-iterator.js.html#line18">line 18</a>
     </li></ul></dd>
     
 
@@ -762,7 +894,7 @@
 
 
 <div class="description">
-    Iterate over a variadic number of iterators in a singlepass. Useful for creating a structure of arrays vsan array of structures <br/> <br/>Each dereference of the iterators yields an array ofthe values, where the order of the values matches theorder of the supplied iterators as they were passed in
+    Iterate over a variadic number of iterators in a singlepass. Useful for creating a structure of arrays vsan array of structures approach<br/> <br/>Each dereference of the iterators yields an array ofthe values, where the order of the values matches theorder of the supplied iterators as they were passed in
 </div>
 
 
@@ -867,7 +999,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="make-zip-iterator.js.html">make-zip-iterator.js</a>, <a href="make-zip-iterator.js.html#line28">line 28</a>
+        <a href="make-zip-iterator.js.html">make-zip-iterator.js</a>, <a href="make-zip-iterator.js.html#line30">line 30</a>
     </li></ul></dd>
     
 
@@ -920,7 +1052,7 @@
 
     
 
-    <h4 class="name" id="map"><span class="type-signature"></span>map<span class="signature">(it, f)</span><span class="type-signature"> &rarr; {Array}</span></h4>
+    <h4 class="name" id="map"><span class="type-signature"></span>map<span class="signature">(f, it)</span><span class="type-signature"> &rarr; {Array}</span></h4>
 
     
 
@@ -963,13 +1095,13 @@
 
         <tr>
             
-                <td class="name"><code>it</code></td>
+                <td class="name"><code>f</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Iterator</span>
+<span class="param-type">function</span>
 
 
             
@@ -986,13 +1118,13 @@
 
         <tr>
             
-                <td class="name"><code>f</code></td>
+                <td class="name"><code>it</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">function</span>
+<span class="param-type">Iterator</span>
 
 
             
@@ -1103,7 +1235,7 @@
 
 
 <div class="description">
-    Reduction function for a given iterator<br/> <br/>Should not be used on indefinite iterators
+    Reduction function for a given iterator<br/> <br/>Should not be used on indefinite iterators
 </div>
 
 
@@ -1242,7 +1374,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="reduce.js.html">reduce.js</a>, <a href="reduce.js.html#line14">line 14</a>
+        <a href="reduce.js.html">reduce.js</a>, <a href="reduce.js.html#line15">line 15</a>
     </li></ul></dd>
     
 
@@ -1459,13 +1591,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#genToIterable">genToIterable</a></li><li><a href="global.html#makeFilterIterator">makeFilterIterator</a></li><li><a href="global.html#makeObjectIterator">makeObjectIterator</a></li><li><a href="global.html#makeTransformIterator">makeTransformIterator</a></li><li><a href="global.html#makeZipIterator">makeZipIterator</a></li><li><a href="global.html#map">map</a></li><li><a href="global.html#reduce">reduce</a></li><li><a href="global.html#toArray">toArray</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#begin">begin</a></li><li><a href="global.html#forEach">forEach</a></li><li><a href="global.html#makeFilterIterator">makeFilterIterator</a></li><li><a href="global.html#makeObjectIterator">makeObjectIterator</a></li><li><a href="global.html#makeTransformIterator">makeTransformIterator</a></li><li><a href="global.html#makeZipIterator">makeZipIterator</a></li><li><a href="global.html#map">map</a></li><li><a href="global.html#reduce">reduce</a></li><li><a href="global.html#toArray">toArray</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sun Jan 29 2017 16:52:10 GMT-0800 (Pacific Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sun Jan 29 2017 22:28:04 GMT-0800 (Pacific Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
