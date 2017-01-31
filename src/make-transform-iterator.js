@@ -14,6 +14,17 @@ const TransfromIterator = function(f, it) {
  * @param {Function} f A callable that is invoked with the values of the iterator
  * @param {Iterable} it Iterator-type
  * @return {TransfromIterator} Iterator that only transforms values upon traversal
+ *
+ * @example
+ * // requires browserify or other equivalent transpilation
+ *
+ * const paragraphs = document.querySelectorAll('p');
+ * const toLower    = (node) => (node.textContent || '').toLowerCase();
+ *
+ * const it = makeTransformIterator(toLower, paragraphs.values());
+ *
+ * // Traversing this iterator will lazily traverse the gathered list
+ * // of paragraph tags on the page and transform the text to lowercase
  */
 const makeTransformIterator = (f, it) => new TransfromIterator(f, it);
 

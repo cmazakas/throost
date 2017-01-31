@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Maps a function f over the iterator it
+ * Maps a function f over the iterator it, returning an array of the results
  *
  * <br/> <br/>
  *

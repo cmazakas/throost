@@ -26,6 +26,23 @@ const ZipIterator = function(...args) {
  *
  * @param {...Iterators} args Iterators to simultaneously traverse
  * @return {ZipIterator} Iterator over several sequences
+ *
+ * @example
+ * 
+ * const x = [0, 1, 2, 3];
+ * const y = new Set([4, 5, 6, 7]);
+ * const z = function*() {
+ *   for (let i = 0; i < 4; ++i) yield i * i; 
+ * };
+ *
+ * const it = makeZipIterator(begin(x), begin(y), z());
+ *
+ * forEach(console.log, it);
+ * // prints
+ * // [0, 4, 0]
+ * // [1, 5, 1]
+ * // [2, 6, 4]
+ * // [3, 7, 9]
  */
 const makeZipIterator = (...args) => new ZipIterator(...args);
 

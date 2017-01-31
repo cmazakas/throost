@@ -25,6 +25,22 @@ const ObjectIterator = function(obj) {
  *
  * @param {Object} obj Object to iterate over
  * @return {ObjectIterator} Iterator that returns an array containing a key and its value
+ *
+ * @example
+ * const o = {
+ *   a: 0,
+ *   b: 1,
+ *   c: 2
+ * };
+ *
+ * assert.deepEqual(
+ *   toArray(makeObjectIterator(o)),
+ *     [
+ *       ['a', 0],
+ *       ['b', 1],
+ *       ['c', 2]
+ *     ]
+ *   );
  */
 const makeObjectIterator = (obj) => new ObjectIterator(obj);
 

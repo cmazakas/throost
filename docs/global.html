@@ -101,7 +101,7 @@
 
     
 
-    <h4 class="name" id="begin"><span class="type-signature"></span>begin<span class="signature">(iterable)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="begin"><span class="type-signature"></span>begin<span class="signature">(iterable)</span><span class="type-signature"> &rarr; {Iterator}</span></h4>
 
     
 
@@ -201,7 +201,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="begin.js.html">begin.js</a>, <a href="begin.js.html#line8">line 8</a>
+        <a href="begin.js.html">begin.js</a>, <a href="begin.js.html#line24">line 24</a>
     </li></ul></dd>
     
 
@@ -224,6 +224,33 @@
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    New iterator to a range
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Iterator</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const x  = [0, 1, 2];const it = begin(x);// prints 0console.log(it.next().value);// prints 1console.log(it.next().value);// prints 2console.log(it.next().value);// iterator is now 'done'</code></pre>
 
 
 
@@ -232,7 +259,7 @@
 
     
 
-    <h4 class="name" id="forEach"><span class="type-signature"></span>forEach<span class="signature">(f, it)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="forEach"><span class="type-signature"></span>forEach<span class="signature">(f, it)</span><span class="type-signature"> &rarr; {void}</span></h4>
 
     
 
@@ -355,7 +382,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="for-each.js.html">for-each.js</a>, <a href="for-each.js.html#line10">line 10</a>
+        <a href="for-each.js.html">for-each.js</a>, <a href="for-each.js.html#line16">line 16</a>
     </li></ul></dd>
     
 
@@ -378,6 +405,29 @@
 
 
 
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">void</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const x = [0, 1, 2, 3];forEach(console.log, begin(x));</code></pre>
 
 
 
@@ -509,7 +559,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="make-filter-iterator.js.html">make-filter-iterator.js</a>, <a href="make-filter-iterator.js.html#line25">line 25</a>
+        <a href="make-filter-iterator.js.html">make-filter-iterator.js</a>, <a href="make-filter-iterator.js.html#line34">line 34</a>
     </li></ul></dd>
     
 
@@ -550,6 +600,11 @@
 </dl>
 
     
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const x      = [0, 1, 2, 3, 4, 5, 6, 7];const isEven = (x) => x % 2 === 0;const it = makeFilterIterator(isEven, begin(x));// prints 0, 2, 4, 6 on separate linesforEach(console.log, it);</code></pre>
 
 
 
@@ -658,7 +713,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="make-object-iterator.js.html">make-object-iterator.js</a>, <a href="make-object-iterator.js.html#line29">line 29</a>
+        <a href="make-object-iterator.js.html">make-object-iterator.js</a>, <a href="make-object-iterator.js.html#line45">line 45</a>
     </li></ul></dd>
     
 
@@ -703,6 +758,11 @@
 </dl>
 
     
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const o = {  a: 0,  b: 1,  c: 2};assert.deepEqual(  toArray(makeObjectIterator(o)),    [      ['a', 0],      ['b', 1],      ['c', 2]    ]  );</code></pre>
 
 
 
@@ -834,7 +894,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="make-transform-iterator.js.html">make-transform-iterator.js</a>, <a href="make-transform-iterator.js.html#line18">line 18</a>
+        <a href="make-transform-iterator.js.html">make-transform-iterator.js</a>, <a href="make-transform-iterator.js.html#line29">line 29</a>
     </li></ul></dd>
     
 
@@ -879,6 +939,11 @@
 </dl>
 
     
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>// requires browserify or other equivalent transpilationconst paragraphs = document.querySelectorAll('p');const toLower    = (node) => (node.textContent || '').toLowerCase();const it = makeTransformIterator(toLower, paragraphs.values());// Traversing this iterator will lazily traverse the gathered list// of paragraph tags on the page and transform the text to lowercase</code></pre>
 
 
 
@@ -999,7 +1064,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="make-zip-iterator.js.html">make-zip-iterator.js</a>, <a href="make-zip-iterator.js.html#line30">line 30</a>
+        <a href="make-zip-iterator.js.html">make-zip-iterator.js</a>, <a href="make-zip-iterator.js.html#line47">line 47</a>
     </li></ul></dd>
     
 
@@ -1046,6 +1111,11 @@
     
 
 
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const x = [0, 1, 2, 3];const y = new Set([4, 5, 6, 7]);const z = function*() {  for (let i = 0; i &lt; 4; ++i) yield i * i; };const it = makeZipIterator(begin(x), begin(y), z());forEach(console.log, it);// prints// [0, 4, 0]// [1, 5, 1]// [2, 6, 4]// [3, 7, 9]</code></pre>
+
+
 
         
             
@@ -1059,7 +1129,7 @@
 
 
 <div class="description">
-    Maps a function f over the iterator it<br/> <br/>Should not be used on indefinite iterators
+    Maps a function f over the iterator it, returning an array of the results<br/> <br/>Should not be used on indefinite iterators
 </div>
 
 
@@ -1597,7 +1667,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sun Jan 29 2017 22:28:04 GMT-0800 (Pacific Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon Jan 30 2017 20:05:09 GMT-0800 (Pacific Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

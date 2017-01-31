@@ -6,6 +6,12 @@
  *
  * @param {Function} f Callable-type
  * @param {Iterator} it Iterator-type
+ * @return {void}
+ * @example
+ *
+ * const x = [0, 1, 2, 3];
+ *
+ * forEach(console.log, begin(x));
  */
 const forEach = (f, it) => {
   let { value, done } = it.next();
