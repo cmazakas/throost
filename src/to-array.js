@@ -9,6 +9,15 @@
  *
  * @param {Iterator} it Iterator which is mutatively iterated to its end
  * @return {Array} An array containing the `value`s of each iteration
+ *
+ * @example
+ *
+ * const range = function*() {
+ *   for (let i = 0; i < 10; ++i) yield i;
+ * };
+ *
+ * // prints [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+ * console.log(toArray(range()));
  */
 const toArray = (it) => Array.from({ [Symbol.iterator]() { return it; } });
 

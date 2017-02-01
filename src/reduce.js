@@ -11,6 +11,18 @@
  * @param {*} init Initial value for the reduction
  * @param {Iterator} it Iterator to be traversed
  * @return {*} Returns the accumulated value
+ * 
+ * @example
+ *
+ * // single-pass reduction over 3 iterables
+ * const x = ['a', 'd', 'g'];
+ * const y = ['b', 'e', 'h'];
+ * const z = ['c', 'f', 'i'];
+ *
+ * const concat = (a, b) => a.concat(b);
+ * const xyz    = reduce(concat, [], makeZipIterator(...[x, y, z].map(begin)));
+ *
+ * assert.deepEqual(xyz.join(''), 'abcdefghi'); 
  */
 const reduce = (f, init, it) => {
   let acc = init;

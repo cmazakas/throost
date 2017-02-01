@@ -10,6 +10,31 @@
  * @param {Function} f
  * @param {Iterator} it
  * @return {Array} Array of values from f(it.next().value)
+ * 
+ * @example
+ *
+ * const double = (x) => x * 2;
+ * const vals   = function*() {
+ *   for (let i = 0; i < 5; ++i) {
+ *     yield i;
+ *   } 
+ * };
+ *
+ * const it = makeTransformIterator(double, vals());
+ *
+ * // prints 0
+ * console.log(it.next().value);
+ *
+ * // prints 2
+ * console.log(it.next().value);
+ *
+ * // prints 4
+ * console.log(it.next().value);
+ *
+ * // prints 6
+ * console.log(it.next().value);
+ *
+ * // ...
  */
 const map = (f, it) => {
   const vals = [];
